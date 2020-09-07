@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dao.StudentDao">
+    <resultMap id="result" type="model.Student">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sex"  property="sex" />
+        <result column="classId" property="classId"/>
+    </resultMap>
+
+
+
+
+    <select id="selectStudent" resultMap="result">
+        select * from student
+    </select>
+
+    <insert id="insert" parameterType="model.Student" >
+        insert into student(name,sex,classId) values (#{name},#{sex},#{classId})
+    </insert>
+
+    <update id="update" parameterType="model.Student">
+        update student
+        <set>
+            <if test="name!=null">
+                name=#{name},
+            </if>
+            <if test="sex!=null">
+                sex=#{sex},
+            </if>
+            <if test="classId!=null">
+                classId=#{classId}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--<delete id="delete" parameterType="int[]">
+        delete from student where id in
+        <foreach collection="array" item="arr" open="(" close=")" separator=",">
+            #{arr}
+        </foreach>
+    </delete>
+-->
+
+
+    <select id="selectStudentTeacher" resultMap="studentTeacher">
+        select * from class c join student s on c.id=s.classId
+    </select>
+
+    <resultMap id="studentTeacher" type="model.Student">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="classId" property="classId"/>
+        <association property="classes" javaType="model.Classes">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="greadeYear" column="greadeYear"/>
+        </association>
+    </resultMap>
+
+
+</mapper>

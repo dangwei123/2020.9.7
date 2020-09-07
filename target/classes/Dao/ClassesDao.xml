@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dao.ClassesDao">
+
+   <!-- <resultMap id="result" type="model.Classes">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="greadeYear" column="greadeYear"/>
+    </resultMap>
+
+    <resultMap id="student" type="model.Classes" extends="result">
+        <collection property="students" ofType="model.Student">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="sex"  property="sex" />
+            <result column="classId" property="classId"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectClasses" resultMap="student">
+        select * from class c join student s on c.id=s.classId
+    </select>
+-->
+
+</mapper>
